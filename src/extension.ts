@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import * as child_process from 'child_process';
 import { isUndefined } from 'util';
 
-let systemCommand: string | undefined
+let acmeishCommand: string | undefined
 let statusBarItem: vscode.StatusBarItem;
 
 export function activate(context: vscode.ExtensionContext) {
@@ -10,34 +10,34 @@ export function activate(context: vscode.ExtensionContext) {
 
 		let text = get_current_selection();
 		if (isUndefined(text)) {
-			clearSystemCommand();
+			clearCurrentCommand();
 			return;
 		}
 		text = text.trimLeft();
 
 		if (text.length == 0) {
-			clearSystemCommand();
+			clearCurrentCommand();
 			return
 		}
 
 		statusBarItem.text = "acmeish: '" + text + "'";
 		statusBarItem.show();
-		vscode.window.showInformationMessage("New system command saved.");
-		systemCommand = text;
+		vscode.window.showInformationMessage("New acmeish command saved.");
+		acmeishCommand = text;
 	}));
 
 
 
 	context.subscriptions.push(vscode.commands.registerCommand('acmeish.runCommand', () => {
 
-		if (systemCommand == undefined) {
-			vscode.window.showInformationMessage('No system command set.');
+		if (acmeishCommand == undefined) {
+			vscode.window.showInformationMessage('No acmeish command set.');
 			return;
 		}
 
-		let toRun = systemCommand;
+		let toRun = acmeishCommand;
 		let input = "";
-		if (systemCommand.startsWith("|")) {
+		if (acmeishCommand.startsWith("|")) {
 			toRun = toRun.substr(1);
 			input = get_current_selection();
 			if (isUndefined(input)) {
@@ -71,10 +71,10 @@ export function activate(context: vscode.ExtensionContext) {
 
 }
 
-function clearSystemCommand() {
+function clearCurrentCommand() {
 	statusBarItem.text = "";
 	statusBarItem.hide();
-	systemCommand = undefined;
+	acmeishCommand = undefined;
 }
 
 function get_current_selection() {

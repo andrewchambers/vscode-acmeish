@@ -9,7 +9,7 @@ The project is named after the acme text editor from the plan9 operating system.
 
 ## Demo
 
-Coming soon...
+[youtube video](https://youtu.be/MLxXQcGdYCc)
 
 ## Usage
 
