@@ -41,6 +41,9 @@ All commands must complete within 10 seconds or are aborted, they must also exit
 
 ## Sponsors
 
+pzmarzly - First! Keep up the good work 
+
+...
 YOU - Your message.
 
 ## Sponsoring
